@@ -20,10 +20,22 @@ routes.post('/ongs', celebrate({
 }),OngController.create)
 
 routes.post('/incidents', IncidentController.create)
-routes.get('/incidents', IncidentController.index)
-routes.delete('/incidents/:id', IncidentController.delete)
+routes.get('/incidents', celebrate({
+  [Segments.QUERY]: Joi.object().keys({
+    page: Joi.number()
+  })
+}), IncidentController.index)
+routes.delete('/incidents/:id', celebrate({
+  [Segments.PARAMS]: Joi.object().keys({
+    id: Joi.number().required()
+  })
+}), IncidentController.delete)
 
-routes.get('/profile', ProfileController.index)
+routes.get('/profile', celebrate({
+  [Segments.HEADERS]: Joi.object({
+    authorization: Joi.string().required()
+  }).unknown()
+}),ProfileController.index)
 
 routes.post('/login', SessionController.create)
 
