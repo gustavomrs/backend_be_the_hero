@@ -11,6 +11,7 @@ module.exports = {
     },
     useNullAsDefault: true
   },
+
   test: {
     client: 'sqlite3',
     connection: {
@@ -21,6 +22,7 @@ module.exports = {
     },
     useNullAsDefault: true
   },
+
   staging: {
     client: 'postgresql',
     connection: {
@@ -52,5 +54,4 @@ module.exports = {
       tableName: 'knex_migrations'
     }
   }
-
 };
