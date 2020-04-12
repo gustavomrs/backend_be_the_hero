@@ -28,14 +28,14 @@ module.exports = {
     const { title, description, value } = request.body
     const ong_id = request.headers.authorization
 
-    const [id] = await connection('incidents').insert({
+    await connection('incidents').insert({
       title,
       description,
       value,
       ong_id
     })
 
-    return response.json({ id })
+    return response.status(201).send()
   },
 
   async delete(request, response) {
