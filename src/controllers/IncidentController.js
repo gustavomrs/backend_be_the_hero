@@ -19,7 +19,7 @@ module.exports = {
         'ongs.uf',
       ]);
 
-    await response.header('X-Total-Count', count['count(*)'])
+    response.header('X-Total-Count', count['count'])
 
     return response.json({ incidents })
   },
